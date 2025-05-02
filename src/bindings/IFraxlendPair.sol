@@ -63,7 +63,13 @@ interface IFraxlendPair {
 
     function dirtyLiquidationFee() external view returns (uint256);
 
-    function exchangeRateInfo() external view returns (uint32 lastTimestamp, uint224 exchangeRate);
+    function exchangeRateInfo() external view returns (
+        address oracle,
+        uint32 maxOracleDeviation, // % of larger number, 1e5 precision
+        uint184 lastTimestamp,
+        uint256 lowExchangeRate,
+        uint256 highExchangeRate
+    );
 
     function getConstants()
         external
