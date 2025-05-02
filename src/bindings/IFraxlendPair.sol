@@ -74,8 +74,8 @@ interface IFraxlendPair {
             uint256 _UTIL_PREC,
             uint256 _FEE_PRECISION,
             uint256 _EXCHANGE_PRECISION,
-            uint64 _DEFAULT_INT,
-            uint16 _DEFAULT_PROTOCOL_FEE,
+            uint256 _DEVIATION_PRECISION,
+            uint256 _RATE_PRECISION,
             uint256 _MAX_PROTOCOL_FEE
         );
 
