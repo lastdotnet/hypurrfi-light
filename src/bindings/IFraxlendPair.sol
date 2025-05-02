@@ -2,6 +2,15 @@
 pragma solidity >=0.8.19;
 
 interface IFraxlendPair {
+    event BorrowAsset(
+        address indexed _borrower,
+        address indexed _receiver,
+        uint256 _borrowAmount,
+        uint256 _sharesAdded
+    );
+
+    event AddCollateral(address indexed sender, address indexed borrower, uint256 collateralAmount);
+
     function CIRCUIT_BREAKER_ADDRESS() external view returns (address);
 
     function COMPTROLLER_ADDRESS() external view returns (address);
@@ -51,7 +60,7 @@ interface IFraxlendPair {
             uint32 lastBlock,
             uint32 feeToProtocolRate,
             uint64 lastTimestamp,
-            uint64 ratePerSec,
+            uint64 ratexPerSec,
             uint64 fullUtilizationRate
         );
 
