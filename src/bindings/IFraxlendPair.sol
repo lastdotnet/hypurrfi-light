@@ -2,6 +2,10 @@
 pragma solidity >=0.8.19;
 
 interface IFraxlendPair {
+    event AddCollateral(address indexed sender, address indexed borrower, uint256 collateralAmount);
+    
+    event AddInterest(uint256 interestEarned, uint256 rate, uint256 feesAmount, uint256 feesShare);
+
     event BorrowAsset(
         address indexed _borrower,
         address indexed _receiver,
@@ -9,7 +13,62 @@ interface IFraxlendPair {
         uint256 _sharesAdded
     );
 
-    event AddCollateral(address indexed sender, address indexed borrower, uint256 collateralAmount);
+    event Deposit(address indexed caller, address indexed owner, uint256 assets, uint256 shares);
+   
+    event LeveragedPosition(
+        address indexed _borrower,
+        address _swapperAddress,
+        uint256 _borrowAmount,
+        uint256 _borrowShares,
+        uint256 _initialCollateralAmount,
+        uint256 _amountCollateralOut
+    );
+
+    event Liquidate(
+        address indexed _borrower,
+        uint256 _collateralForLiquidator,
+        uint256 _sharesToLiquidate,
+        uint256 _amountLiquidatorToRepay,
+        uint256 _feesAmount,
+        uint256 _sharesToAdjust,
+        uint256 _amountToAdjust
+    );
+
+    event RemoveCollateral(
+        address indexed _sender,
+        uint256 _collateralAmount,
+        address indexed _receiver,
+        address indexed _borrower
+    );
+
+    event RepayAsset(address indexed payer, address indexed borrower, uint256 amountToRepay, uint256 shares);
+
+    event RepayAssetWithCollateral(
+        address indexed _borrower,
+        address _swapperAddress,
+        uint256 _collateralToSwap,
+        uint256 _amountAssetOut,
+        uint256 _sharesRepaid
+    );
+
+    event UpdateExchangeRate(uint256 lowExchangeRate, uint256 highExchangeRate);
+
+    event UpdateRate(
+        uint256 oldRatePerSec,
+        uint256 oldFullUtilizationRate,
+        uint256 newRatePerSec,
+        uint256 newFullUtilizationRate
+    );
+
+    event WarnOracleData(address oracle);
+
+    event Withdraw(
+        address indexed caller,
+        address indexed receiver,
+        address indexed owner,
+        uint256 assets,
+        uint256 shares
+    );
 
     function CIRCUIT_BREAKER_ADDRESS() external view returns (address);
 
