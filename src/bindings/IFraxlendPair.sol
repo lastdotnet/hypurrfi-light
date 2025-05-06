@@ -3,18 +3,15 @@ pragma solidity >=0.8.19;
 
 interface IFraxlendPair {
     event AddCollateral(address indexed sender, address indexed borrower, uint256 collateralAmount);
-    
+
     event AddInterest(uint256 interestEarned, uint256 rate, uint256 feesAmount, uint256 feesShare);
 
     event BorrowAsset(
-        address indexed _borrower,
-        address indexed _receiver,
-        uint256 _borrowAmount,
-        uint256 _sharesAdded
+        address indexed _borrower, address indexed _receiver, uint256 _borrowAmount, uint256 _sharesAdded
     );
 
     event Deposit(address indexed caller, address indexed owner, uint256 assets, uint256 shares);
-   
+
     event LeveragedPosition(
         address indexed _borrower,
         address _swapperAddress,
@@ -35,10 +32,7 @@ interface IFraxlendPair {
     );
 
     event RemoveCollateral(
-        address indexed _sender,
-        uint256 _collateralAmount,
-        address indexed _receiver,
-        address indexed _borrower
+        address indexed _sender, uint256 _collateralAmount, address indexed _receiver, address indexed _borrower
     );
 
     event RepayAsset(address indexed payer, address indexed borrower, uint256 amountToRepay, uint256 shares);
@@ -54,20 +48,13 @@ interface IFraxlendPair {
     event UpdateExchangeRate(uint256 lowExchangeRate, uint256 highExchangeRate);
 
     event UpdateRate(
-        uint256 oldRatePerSec,
-        uint256 oldFullUtilizationRate,
-        uint256 newRatePerSec,
-        uint256 newFullUtilizationRate
+        uint256 oldRatePerSec, uint256 oldFullUtilizationRate, uint256 newRatePerSec, uint256 newFullUtilizationRate
     );
 
     event WarnOracleData(address oracle);
 
     event Withdraw(
-        address indexed caller,
-        address indexed receiver,
-        address indexed owner,
-        uint256 assets,
-        uint256 shares
+        address indexed caller, address indexed receiver, address indexed owner, uint256 assets, uint256 shares
     );
 
     function CIRCUIT_BREAKER_ADDRESS() external view returns (address);
@@ -98,11 +85,9 @@ interface IFraxlendPair {
 
     function balanceOf(address account) external view returns (uint256);
 
-    function borrowAsset(
-        uint256 _borrowAmount,
-        uint256 _collateralAmount,
-        address _receiver
-    ) external returns (uint256 _shares);
+    function borrowAsset(uint256 _borrowAmount, uint256 _collateralAmount, address _receiver)
+        external
+        returns (uint256 _shares);
 
     function borrowerWhitelistActive() external view returns (bool);
 
@@ -131,13 +116,16 @@ interface IFraxlendPair {
 
     function dirtyLiquidationFee() external view returns (uint256);
 
-    function exchangeRateInfo() external view returns (
-        address oracle,
-        uint32 maxOracleDeviation, // % of larger number, 1e5 precision
-        uint184 lastTimestamp,
-        uint256 lowExchangeRate,
-        uint256 highExchangeRate
-    );
+    function exchangeRateInfo()
+        external
+        view
+        returns (
+            address oracle,
+            uint32 maxOracleDeviation, // % of larger number, 1e5 precision
+            uint184 lastTimestamp,
+            uint256 lowExchangeRate,
+            uint256 highExchangeRate
+        );
 
     function getConstants()
         external
@@ -191,9 +179,10 @@ interface IFraxlendPair {
             uint256 _totalCollateral
         );
 
-    function getUserSnapshot(
-        address _address
-    ) external view returns (uint256 _userAssetShares, uint256 _userBorrowShares, uint256 _userCollateralBalance);
+    function getUserSnapshot(address _address)
+        external
+        view
+        returns (uint256 _userAssetShares, uint256 _userBorrowShares, uint256 _userCollateralBalance);
 
     function increaseAllowance(address spender, uint256 addedValue) external returns (bool);
 
@@ -207,11 +196,9 @@ interface IFraxlendPair {
         address[] memory _path
     ) external returns (uint256 _totalCollateralBalance);
 
-    function liquidate(
-        uint128 _sharesToLiquidate,
-        uint256 _deadline,
-        address _borrower
-    ) external returns (uint256 _collateralForLiquidator);
+    function liquidate(uint128 _sharesToLiquidate, uint256 _deadline, address _borrower)
+        external
+        returns (uint256 _collateralForLiquidator);
 
     function maturityDate() external view returns (uint256);
 
