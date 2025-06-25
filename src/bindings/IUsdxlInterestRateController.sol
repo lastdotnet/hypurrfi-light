@@ -1,10 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.10;
 
-import {IERC20} from '@openzeppelin/contracts/token/ERC20/IERC20.sol';
-import {IUsdxlToken} from '../../../usdxl/interfaces/IUsdxlToken.sol';
-import {IWrappedHypeGateway} from '@hypurrfi/periphery/contracts/misc/interfaces/IWrappedHypeGateway.sol';
-
 /**
  * @title IUsdxlInterestRateController
  * @author Last Labs
@@ -60,9 +56,7 @@ interface IUsdxlInterestRateController {
     function usdxlOracle() external view returns (address);
 
     // State variables (view functions)
-    function USDXL_TOKEN() external view returns (IUsdxlToken);
     function USDXL_RESERVE() external view returns (address);
-    function WRAPPED_HYPE_GATEWAY() external view returns (IWrappedHypeGateway);
     function lastExecutionTime() external view returns (uint256);
     function currentRate() external view returns (uint256);
     function perpetualLoanActive() external view returns (bool);
