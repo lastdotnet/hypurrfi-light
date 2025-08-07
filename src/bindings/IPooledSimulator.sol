@@ -8,6 +8,7 @@ interface IPooledSimulator {
         address user;
         uint256 debtToCover;
     }
+
     struct LiquidationSimulationResult {
         uint256 collateralToLiquidate;
         uint256 debtToRepay;
