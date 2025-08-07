@@ -10,12 +10,11 @@ interface IPooledSimulator {
     }
 
     struct LiquidationSimulationResult {
-        uint256 collateralToLiquidate;      // Amount of collateral that would be liquidated (after protocol fee)
-        uint256 debtToRepay;                // Amount of debt that would be repaid (including flash loan fee)
-        uint256 debtTokensLeft;             // Amount of debt tokens left after repaying debt + flash loan fee (at oracle price)
-        uint256 healthFactor;               // User's current health factor
-        bool isLiquidatable;                // Whether the user can be liquidated
-        string reason;                      // Reason if not liquidatable
+        uint256 collateralToLiquidate;
+        uint256 debtToRepay;
+        uint256 healthFactor;
+        bool isLiquidatable;
+        string reason;
     }
 
     function ADDRESSES_PROVIDER() external view returns (address);
