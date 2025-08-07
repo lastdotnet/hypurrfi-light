@@ -6,7 +6,7 @@ interface IFraxV3Simulator {
     struct LiquidationSimulationResult {
         uint256 collateralToLiquidate;      // Amount of collateral that would be liquidated (after protocol fee)
         uint256 debtToRepay;                // Amount of debt that would be repaid (including flash loan fee)
-        uint256 healthFactor;               // User's current health factor (custom for Fraxlend)
+        uint256 userLtv;                    // User's current LTV (custom for Fraxlend)
         bool isLiquidatable;                // Whether the user can be liquidated
         string reason;                      // Reason if not liquidatable
     }
