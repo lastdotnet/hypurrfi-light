@@ -19,5 +19,5 @@ interface IGsmWithHyFiPoolV2 is IGsmWithHyFiPool {
     SwapParams[] calldata swapParams
   ) external;
 
-  function calculateSwapAmounts() external view returns (address tokenIn, address[] memory tokensOut, uint256[] memory amountsIn);
+  function calculateSwapAmounts(uint256 harvestAmount) external view returns (address tokenIn, address[] memory tokensOut, uint256[] memory amountsIn);
 }
