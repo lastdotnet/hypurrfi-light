@@ -5,7 +5,6 @@ import {IGsmWithHyFiPool} from "../../src/bindings/IGsmWithHyFiPool.sol";
 
 interface IGsmWithHyFiPoolV2 is IGsmWithHyFiPool {
   struct SwapParams {
-    address swapRouter;
     bytes swapData;
     address sellToken;
     address buyToken;
